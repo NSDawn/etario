@@ -1,0 +1,34 @@
+section.conditions {
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  gap: 2rem;
+  
+}
+
+section.user-input {
+
+  --rgb-text-invalid: rgb(228, 74, 74);
+
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  gap: 2rem;
+  & input {
+    all: unset;
+    margin: 2rem;
+    font-family: "Fira", monospace;
+    font-weight: bold;
+    padding: 1rem;
+    font-size: 2rem;
+    outline: var(--rgb-text) 0.1rem solid;
+    border-radius: 20px;
+    width: 10rem;
+    &.invalid-input {
+      text-decoration: underline var(--rgb-text-invalid) 0.2rem dashed;
+    }
+  }
+}
+
+
+
