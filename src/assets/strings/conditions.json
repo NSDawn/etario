@@ -10,8 +10,6 @@
     "next-antecedent" : {"symbol": "<<-", "desc" : "antecedent of next letter"},
     "first" : {"symbol": "[a...", "desc" : "alphabetically first among letters in word"},
     "last" : {"symbol": "...z]", "desc" : "alphabetically last among letters in word"},
-
     "norepeats": {"symbol": "!=", "desc" : "no repeat letters in full word"},
-
     "":  {"symbol": "", "desc" : ""}
 }

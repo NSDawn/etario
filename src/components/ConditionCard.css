@@ -2,27 +2,39 @@
     width: 10vw;
     outline-width: 0.1rem; outline-style: solid;
     border-radius: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 2fr 1fr;
 
+    text-align: center;
+    padding: 1rem;
+    height: 10rem;
+    transition: ease-in-out 0.25s;
+    background-position: 0 10rem;
+    background-repeat: no-repeat;
+    
+    &.blank {
+        outline-color: var(--rgb-text);
+        color: var(--rgb-text);
+    }
+    &.satisfied {
+        outline-color: var(--rgb-text-valid);
+        color: var(--rgb-text-valid);
+        background-image: var(--rgb-bg-cond-valid);
+        background-position: 0 0rem;
+        box-shadow: 0 0 10px 0px white;
+    }
+    &.unsatisfied {
+        outline-color: var(--rgb-text-invalid);
+        color: var(--rgb-text-invalid);
+        background-image: var(--rgb-bg-cond-invalid);
+        background-position: 0 0rem;
+    }
     & h3 {
         font-family: "Fira", monospace;
         margin: 0;
         font-size: 1.5rem;
-    }
-    &.blank {
-        outline-color: white;
-        color: white;
-    }
-    &.satisfied {
-        outline-color: greenyellow;
-        color: greenyellow;
-    }
-    &.unsatisfied {
-        outline-color: red;
-        color: red;
+        
+        
     }
 }

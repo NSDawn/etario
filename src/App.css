@@ -1,3 +1,18 @@
+body {
+  margin: 0;
+  display: flex;
+  
+  justify-content: center;
+  width: 100vw;
+  height: 100vh;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
 section.conditions {
   display: flex;
   flex-direction: row;
@@ -8,15 +23,13 @@ section.conditions {
 
 section.user-input {
 
-  --rgb-text-invalid: rgb(228, 74, 74);
-
+  
+  position: relative;
   display: flex;
-  flex-direction: row;
-  place-content: center;
-  gap: 2rem;
+  flex-direction: column;
+  place-items: center;
   & input {
     all: unset;
-    margin: 2rem;
     font-family: "Fira", monospace;
     font-weight: bold;
     padding: 1rem;
@@ -27,6 +40,21 @@ section.user-input {
     &.invalid-input {
       text-decoration: underline var(--rgb-text-invalid) 0.2rem dashed;
     }
+  }
+  & .no-plurals {
+    position: absolute;
+    bottom: -2rem;
+    color: var(--rgb-text-invalid);
+  }
+}
+
+header {
+  text-align: center;
+  padding: 0.5rem;
+  & h1 {
+    margin: 1rem;
+    font-size: 3rem;
+    line-height: 1.5rem;
   }
 }
 

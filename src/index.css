@@ -1,12 +1,14 @@
 :root {
   font-family: Saira, Verdana, system-ui, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  
-  --rgb-bg-main: linear-gradient(to bottom, #341746, #0e0315);
-  --rgb-text: white;
 
-  color: rgba(255, 255, 255, 0.87);
+  --rgb-bg-main: linear-gradient(to bottom, #2b0e3c, #0e0315);
+  --rgb-bg-cond-valid: linear-gradient(to bottom, #0a5325, #072c1b);
+  --rgb-bg-cond-invalid: linear-gradient(to bottom, #4d0e0e, #230303);
+  --rgb-text: #fefff5;
+  --rgb-text-valid: #73e890;
+  --rgb-text-invalid: #ef4848;
+
+  color: var(--rgb-text);
   background: var(--rgb-bg-main);
 
   font-synthesis: none;
@@ -35,14 +37,7 @@ a:hover {
   color: #535bf2;
 }
 
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  justify-content: center;
-  width: 100vw;
-  height: 100vh;
-}
+
 
 h1 {
   font-size: 3.2em;
