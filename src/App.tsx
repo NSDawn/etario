@@ -10,7 +10,7 @@ function App() {
   const [word, setWord] = useState('');
   const [inputWord, setInputWord] = useState('');
   const [conditions, setConditions] = useState([
-    'etario', 
+    'next-antecedent', 
     'any',
     "etario", 
     "etario"
@@ -22,6 +22,9 @@ function App() {
 
   return (
     <>
+      <header>
+        <h1>etario</h1>
+      </header>
       <main>
         <section className='conditions'>
           {
@@ -62,13 +65,37 @@ function satisfiesConditions(word: string, conditions: string[]): (boolean|null)
     switch (v) {
       case "any" :
         return true;
-      case "any-norepeats" :
+      case "norepeats" :
         return word.split('').length == (new Set(word.split(''))).size
       case "etario" : 
         return "etario".includes(word[i]);
+      case "kjvxzq" : 
+        return "kjvxzq".includes(word[i]);
+      case "first" :
+        return word[i].charCodeAt(0) === Math.min(...(word.split('').map(c => c.charCodeAt(0))));
+      case "last" :
+        return word[i].charCodeAt(0) === Math.max(...(word.split('').map(c => c.charCodeAt(0))));
+      case "previous-copy" :
+        return word[i] === word[i-1];
+      case "previous-subsequent" :
+        return word[i] === shiftLetter(word[i-1], 1);
+      case "previous-antecedent" :
+        return word[i] === shiftLetter(word[i-1], -1);
+      case "next-copy" :
+        return word[i] === word[i+1];
+      case "next-subsequent" :
+        return word[i] === shiftLetter(word[i+1], 1);
+      case "next-antecedent" :
+        return word[i] === shiftLetter(word[i+1], -1);
     }
     return true;
   })
   
   return out;
+}
+
+function shiftLetter(letter :string, offset = 1) {
+  if (!letter) return
+  const outCharCode = (((letter.charCodeAt(0) + offset -97) +26) %26) +97;
+  return String.fromCharCode(outCharCode);
 }

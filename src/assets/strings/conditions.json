@@ -6,10 +6,12 @@
     "previous-subsequent" : {"symbol": "->>", "desc" : "subsequent of previous letter"},
     "previous-antecedent" : {"symbol": "-><", "desc" : "antecedent of previous letter"},
     "next-copy" : {"symbol": "&<-", "desc" : "same as next letter"},
-    "next-subsequent" : {"symbol": "<<-", "desc" : "subsequent of next letter"},
-    "next-antecedent" : {"symbol": "><-", "desc" : "antecedent of next letter"},
+    "next-subsequent" : {"symbol": "><-", "desc" : "subsequent of next letter"},
+    "next-antecedent" : {"symbol": "<<-", "desc" : "antecedent of next letter"},
+    "first" : {"symbol": "[a...", "desc" : "alphabetically first among letters in word"},
+    "last" : {"symbol": "...z]", "desc" : "alphabetically last among letters in word"},
 
-    "any-norepeats": {"symbol": "*!=", "desc" : "any\nno repeat letters in word"},
+    "norepeats": {"symbol": "!=", "desc" : "no repeat letters in full word"},
 
     "":  {"symbol": "", "desc" : ""}
 }

@@ -1,5 +1,5 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  font-family: Saira, Verdana, system-ui, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   
@@ -16,6 +16,15 @@
   -webkit-text-size-adjust: 100%;
 
 }
+@font-face {
+  font-family: Fira;
+  src: url("/src/assets/fonts/FiraCode/FiraCode-VariableFont_wght.ttf");
+} 
+@font-face {
+  font-family: Saira;
+  src: url("/src/assets/fonts/Saira/Saira-VariableFont_wdth\,wght.ttf");
+} 
+
 
 a {
   font-weight: 500;
