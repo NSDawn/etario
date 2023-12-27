@@ -1,0 +1,56 @@
+{
+    "3": {
+        "0": [
+            ["any", "any", "any"]
+        ], 
+        "1": [
+            ["etario", "etario", "etario"],
+            [ "any", "is-w", "any" ]
+        ],
+        "2": [
+            [ "etario", "first", "kjvxzq" ]
+        ]
+    },
+    "4": {
+        "0" : [
+            ["*", "*", "*", "*"]
+        ],
+        "1" : [
+            [ "last", "any", "previous-copy", "any" ],
+            [ "any", "any", "previous-copy", "any" ],
+            [ "etario", "etario", "etario", "etario" ],
+            [ "norepeats", "any", "any", "previous-copy" ],
+            [ "any", "is-k", "any", "any"],
+            [ "kjvxzq", "any", "any", "kjvxzq"],
+            [ "first", "any", "last", "is-e"],
+            [ "last", "etario", "etario", "first"],
+            [ "any", "any", "is-h", "any"],
+            [ "any", "etario", "kjvxzq", "first" ],
+            [ "any", "any", "last", "previous-copy" ],
+            [ "any", "is-t", "any", "any" ],
+            [ "etario", "previous-subsequent", "any", "any" ],
+            [ "kjvxzq", "any", "etario", "any" ],
+            [ "norepeats", "etario", "etario", "etario" ]
+            
+        ],
+        "2" : [
+            [ "any", "any", "previous-copy", "etario" ], 
+            [ "norepeats", "any", "first", "kjvxzq" ],
+            ["any", "previous-antecedent", "previous-antecedent", "any"],
+            [ "next-subsequent", "any", "first", "etario" ], 
+            ["any", "previous-subsequent", "any", "previous-subsequent"],
+            ["norepeats", "any", "etario", "previous-antecedent"],
+            ["any", "is-l", "any", "previous-subsequent"],
+            ["is-m", "any", "last", "any"],
+            ["any", "last", "previous-antecedent", "any"],
+            ["any", "last", "first", "etario"],
+            ["any", "is-y", "etario", "any"],
+            [ "first", "any", "is-i", "last" ],
+            [ "any", "last", "previous-copy", "kjvxzq" ],
+            [ "etario", "any", "any", "previous-antecedent" ],
+            [ "etario", "any", "next-copy", "any" ],
+            [ "any", "previous-subsequent", "any", "etario" ],
+            [ "is-w", "any", "previous-subsequent", "any" ]
+        ]
+    }
+}

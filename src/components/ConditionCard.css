@@ -1,6 +1,5 @@
 .condition-card {
     width: 10vw;
-    outline-width: 0.1rem; outline-style: solid;
     border-radius: 20px;
     display: grid;
     grid-template-columns: 1fr;
@@ -14,19 +13,16 @@
     background-repeat: no-repeat;
     
     &.blank {
-        outline-color: var(--rgb-text);
+        outline: var(--rgb-text) 0.1rem solid;
         color: var(--rgb-text);
     }
     &.satisfied {
-        outline-color: var(--rgb-text-valid);
-        color: var(--rgb-text-valid);
+        outline: var(--rgb-text-valid) 0.2rem solid;
         background-image: var(--rgb-bg-cond-valid);
         background-position: 0 0rem;
-        box-shadow: 0 0 10px 0px white;
     }
     &.unsatisfied {
-        outline-color: var(--rgb-text-invalid);
-        color: var(--rgb-text-invalid);
+        outline: var(--rgb-text-invalid) 0.2rem solid;
         background-image: var(--rgb-bg-cond-invalid);
         background-position: 0 0rem;
     }

@@ -2,10 +2,10 @@
   font-family: Saira, Verdana, system-ui, sans-serif;
 
   --rgb-bg-main: linear-gradient(to bottom, #2b0e3c, #0e0315);
-  --rgb-bg-cond-valid: linear-gradient(to bottom, #0a5325, #072c1b);
-  --rgb-bg-cond-invalid: linear-gradient(to bottom, #4d0e0e, #230303);
+  --rgb-bg-cond-valid: linear-gradient(to bottom, #161a1c, #1a121a );
+  --rgb-bg-cond-invalid: linear-gradient(to bottom, #2b0a1d, #1d071a );
   --rgb-text: #fefff5;
-  --rgb-text-valid: #73e890;
+  --rgb-text-valid: #95f78b;
   --rgb-text-invalid: #ef4848;
 
   color: var(--rgb-text);

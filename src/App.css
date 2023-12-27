@@ -13,7 +13,7 @@ main {
   gap: 2rem;
 }
 
-section.conditions {
+section.constraints {
   display: flex;
   flex-direction: row;
   place-content: center;
@@ -22,8 +22,6 @@ section.conditions {
 }
 
 section.user-input {
-
-  
   position: relative;
   display: flex;
   flex-direction: column;
@@ -37,15 +35,43 @@ section.user-input {
     outline: var(--rgb-text) 0.1rem solid;
     border-radius: 20px;
     width: 10rem;
+    transition: ease-in-out 0.15s;
+
     &.invalid-input {
       text-decoration: underline var(--rgb-text-invalid) 0.2rem dashed;
+      outline: var(--rgb-text-invalid) 0.2rem solid;
+    }
+    &.anim-incorrect {
+      animation: anim-incorrect forwards 0.15s;
+    }
+    &.anim-correct {
+      animation: anim-correct forwards 0.10s;
     }
   }
+  
   & .no-plurals {
     position: absolute;
     bottom: -2rem;
     color: var(--rgb-text-invalid);
   }
+}
+
+@keyframes anim-incorrect {
+  0% {transform: translateX(0)};
+  10% {transform: translateX(-1.5rem) rotate(-1deg);}
+  30% {transform: translateX(1.5rem)  rotate(1deg);}
+  50% {transform: translateX(-1rem)  rotate(1deg);}
+  70% {transform: translateX(1rem)  rotate(1deg);}
+  80% {transform: translateX(-0.5rem)  rotate(1deg);}
+  90% {transform: translateX(0.5rem)  rotate(1deg);}
+  100% {transform: translateX(0)}
+}
+
+@keyframes anim-correct {
+  0% {transform: translateY(0rem);}
+  20% {transform: translateY(0.5rem);}
+  70% {transform: translateY(1rem);}
+  100% {transform: translateY(0rem);}
 }
 
 header {
@@ -55,6 +81,7 @@ header {
     margin: 1rem;
     font-size: 3rem;
     line-height: 1.5rem;
+    font-family: "Fira", monospace;
   }
 }
 

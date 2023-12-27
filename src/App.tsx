@@ -1,27 +1,58 @@
 import { useState } from 'react';
 import ConditionCard from './components/ConditionCard';
 import './App.css';
-import $_conditions from "./assets/strings/conditions.json";
-const $conditions :Record<string, {symbol: string, desc: string}> = $_conditions;
+import $_constraints from "./assets/strings/constraints.json";
+const $constraints :Record<string, {symbol: string, desc: string}> = $_constraints;
 import _acceptableWords from './assets/wordlist-stuff/acceptable-words.json' ;
 const acceptableWords :Record<number, string[]> = _acceptableWords;
+import {satisfiesConstraints, shiftLetter, cleanInputWord} from "./assets/ref/Game"
+import _prompts from "./assets/ref/prompts.json"
+const prompts :Record<number, Record<number, string[][]>> = _prompts;
 
 function App() {
   const [word, setWord] = useState('');
   const [inputWord, setInputWord] = useState('');
-  const [conditions, setConditions] = useState([
-    'next-antecedent', 
+  const [constraints, setConstraints] = useState([
+    'any', 
     'any',
-    "etario", 
-    "etario"
+    'any',
+    'any',
   ]);
 
+  
   const _inputWord = cleanInputWord(inputWord);
   if (_inputWord !== inputWord) setInputWord(_inputWord);
 
-  const satisfiedConds = satisfiesConditions(inputWord, conditions);
+  const satisfiedConds = satisfiesConstraints(inputWord, constraints);
   
-  const isInvalidInput = (inputWord.length === conditions.length) ? (!acceptableWords[inputWord.length]?.includes(inputWord)) : null;
+  const isCompleteInput = inputWord.length === constraints.length;
+  const isInvalidInput = (!acceptableWords[inputWord.length]?.includes(inputWord));
+
+  const isAcceptableInput = (
+    isCompleteInput && 
+    !isInvalidInput &&
+    !satisfiedConds.some(v => !v)
+  );
+  
+  const [inputBoxAnimationClass, setInputBoxAnimationClass] = useState('')
+  const animateInputBox = (animation :string, delay_ms :number) => {setInputBoxAnimationClass(animation); setTimeout(() => setInputBoxAnimationClass(''), delay_ms);}
+
+  function handleEnterKeyPress(e: React.KeyboardEvent) {
+    if (!isAcceptableInput) {
+      animateInputBox('anim-incorrect', 200)
+      return;
+    };
+    animateInputBox('anim-correct', 200);
+    setTimeout(doNextPrompt, 200);
+  }
+
+  function doNextPrompt() {
+    setInputWord("");
+    const possiblePrompts = prompts[4][1]
+    const randIdx = Math.floor(possiblePrompts.length * Math.random())
+    setConstraints(possiblePrompts[randIdx])
+  }
+
 
   return (
     <>
@@ -30,14 +61,14 @@ function App() {
         <h2>a constraint-based word game</h2>
       </header>
       <main>
-        <section className='conditions'>
+        <section className='constraints'>
           {
-            conditions.map((condition, i) => {
+            constraints.map((constraint, i) => {
               return (
                 <ConditionCard 
                   satisfication_state={(satisfiedConds[i] === null) ? "blank" : satisfiedConds[i] ? "satisfied" : "unsatisfied" }
-                  display_symbol={$conditions[condition].symbol} 
-                  display_text={$conditions[condition].desc}
+                  display_symbol={$constraints[constraint]?.symbol ?? "displaySymbolMissing"} 
+                  display_text={$constraints[constraint]?.desc ?? "displayDescMissing"}
                   key={i} 
                 />
                 
@@ -48,14 +79,15 @@ function App() {
         <section className="user-input">
           <input 
             type="text"
-            className={`${isInvalidInput? "invalid-input" : ""}`}
-            maxLength={conditions.length}
+            className={`${isCompleteInput && isInvalidInput? "invalid-input" : ""} ${inputBoxAnimationClass}`}
+            maxLength={constraints.length}
             spellCheck={false}
             value={inputWord}
             onChange={e => setInputWord(e.target.value)}
+            onKeyDown={e => {if (e.key === "Enter") handleEnterKeyPress(e);}}
           />
           {
-            isInvalidInput && inputWord[inputWord.length -1] === 's' ?
+            isCompleteInput && isInvalidInput && inputWord[inputWord.length -1] === 's' ?
             <div className="no-plurals">no plurals!</div>
             :null
           }
@@ -67,55 +99,3 @@ function App() {
 }
 
 export default App;
-
-function satisfiesConditions(word: string, conditions: string[]): (boolean|null)[] {
-
-  let out = conditions.map((v, i) => {
-    if (!word[i]) return null;
-    switch (v) {
-      case "any" :
-        return true;
-      case "norepeats" :
-        return word.split('').length == (new Set(word.split(''))).size
-      case "etario" : 
-        return "etario".includes(word[i]);
-      case "kjvxzq" : 
-        return "kjvxzq".includes(word[i]);
-      case "first" :
-        return word[i].charCodeAt(0) === Math.min(...(word.split('').map(c => c.charCodeAt(0))));
-      case "last" :
-        return word[i].charCodeAt(0) === Math.max(...(word.split('').map(c => c.charCodeAt(0))));
-      case "previous-copy" :
-        return word[i] === word[i-1];
-      case "previous-subsequent" :
-        return word[i] === shiftLetter(word[i-1], 1);
-      case "previous-antecedent" :
-        return word[i] === shiftLetter(word[i-1], -1);
-      case "next-copy" :
-        return word[i] === word[i+1];
-      case "next-subsequent" :
-        return word[i] === shiftLetter(word[i+1], 1);
-      case "next-antecedent" :
-        return word[i] === shiftLetter(word[i+1], -1);
-    }
-    return true;
-  })
-  
-  return out;
-}
-
-function shiftLetter(letter :string, offset = 1) {
-  if (!letter) return
-  const outCharCode = (((letter.charCodeAt(0) + offset -97) +26) %26) +97;
-  return String.fromCharCode(outCharCode);
-}
- 
-function cleanInputWord(s :string) {
-  let out_s = "";
-  const acceptable_chars = "abcdefghijklmnopqrstuvwxyz";
-  for (let c of s?.toLowerCase()) {
-    if (!acceptable_chars.includes(c)) continue;
-    out_s += c;
-  }
-  return out_s
-}
